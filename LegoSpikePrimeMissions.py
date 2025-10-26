@@ -418,20 +418,14 @@ async def run1():
 
     print("RUN 1")
     await runFwd(48,500)
-
     await motor.run_for_degrees(port.F, 300, -900)
     #await runloop.sleep_ms(500)
-
     await runRev(5,100)
-
     motor.run_for_degrees(port.F, 250, 900)
-
     await runFwd(12,500)
-
     for i in range(10):
         await motor.run_for_degrees(port.D, 100, -900)
         await motor.run_for_degrees(port.D, 500, -900)
-
     await runRev(12,100)
     await runRev(55,500)
 
@@ -473,26 +467,6 @@ async def run2():
 # run 3 program
 async def run3():
     print("RUN 3")
-    angleToTract = 0
-    await runFwd(70,500)
-    await turnLeft(41,100)
-    angleToTract = angleToTract + (-40)
-    await runFwd(12,100,angleToTract)
-    await runRev(3,100, angleToTract)
-
-    print ("here1 " + str(angleToTract))
-    #lift arm up
-    #await motor.run_for_degrees(port.F, 220, 100)
-    motor.reset_relative_position(port.F, 0)
-    await motor.run_to_relative_position(port.F,220,200)
-
-    print ("here2 " + str(angleToTract))
-    await runRev(15,100, angleToTract)
-    print ("here3 " + str(angleToTract))
-    angleToTract = angleToTract + (-120)
-    print ("here4 " + str(angleToTract))
-    await turnLeft(140,100)
-    await runFwd(60,500,angleToTract)
 
 # END RUN 3
 #----------------------------------------
@@ -522,9 +496,7 @@ async def run5():
     for i in range(4):
         await motor.run_for_degrees(port.F, 120, 500)
         await motor.run_for_degrees(port.F, -120, 200)
-
     await runRev(35,200)
-
 
 # END RUN 5
 #----------------------------------------
@@ -677,10 +649,10 @@ async def execute(run_numbers=None):
 ############### Chained Runs ###############
 
 # SLOT 0 - All Runs#
-#runloop.run(execute([1, 2, 3, 4, 5, 6]))
+runloop.run(execute([1, 2, 3, 5, 6]))
 
 # SLOT 1 - Run 1 Onwards
-runloop.run(execute([1]))
+# runloop.run(execute([1]))
 
 # SLOT 2 - Run 2 Onwards
 # runloop.run(execute([2]))
@@ -701,5 +673,5 @@ runloop.run(execute([1]))
 # runloop.run(execute([99]))
 
 # SLOT Trials
-#runloop.run(execute([0]))
+# runloop.run(execute([0]))
 
